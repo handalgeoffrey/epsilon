@@ -14,7 +14,7 @@ export default function Gallery() {
   const sampleImages = [
     {
       id: 1,
-      src: '/Gallary image 1.jpg',
+      src: '/epsilon/Gallary image 1.jpg',
       caption: 'Mathematics Workshop',
       description: 'Interactive workshop for class 12 students on advanced calculus concepts',
       category: 'Events',
@@ -23,7 +23,7 @@ export default function Gallery() {
     },
     {
       id: 2,
-      src: '/logo.jpg',
+      src: '/epsilon/logo.jpg',
       caption: 'Epsilon Logo',
       description: 'Official Epsilon Mathematics Institute logo and branding',
       category: 'Branding',
@@ -32,7 +32,7 @@ export default function Gallery() {
     },
     {
       id: 3,
-      src: '/porsche.jpg',
+      src: '/epsilon/porsche.jpg',
       caption: 'Student Success',
       description: 'Celebrating student achievements in mathematics competitions',
       category: 'Achievements',
@@ -98,8 +98,8 @@ export default function Gallery() {
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded-lg transition-all duration-200 ${selectedCategory === category
-                    ? 'bg-brandPurple text-white shadow-lg'
-                    : 'bg-white/50 text-gray-700 hover:bg-white/80'
+                  ? 'bg-brandPurple text-white shadow-lg'
+                  : 'bg-white/50 text-gray-700 hover:bg-white/80'
                   }`}
               >
                 {category}

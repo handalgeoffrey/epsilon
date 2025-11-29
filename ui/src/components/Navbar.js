@@ -21,7 +21,7 @@ export default function Navbar() {
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 px-4 py-3">
         <Link href="/" className="flex items-center gap-2 mb-2 sm:mb-0">
           <span className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/90 shadow border border-white/60 mr-2">
-            <Image src="/logo.jpg" alt="Epsilon Logo" width={60} height={60} className="rounded-md object-contain" priority />
+            <Image src="/epsilon/logo.jpg" alt="Epsilon Logo" width={60} height={60} className="rounded-md object-contain" priority />
           </span>
           <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brandPurple to-brandGold">Epsilon</span>
         </Link>

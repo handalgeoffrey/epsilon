@@ -29,7 +29,7 @@ export default function Home() {
   ];
 
   const heroImages = [
-    { id: 1, src: '/porsche.jpg', alt: 'Hero Background' }
+    { id: 1, src: '/epsilon/porsche.jpg', alt: 'Hero Background' }
   ];
 
   return (
