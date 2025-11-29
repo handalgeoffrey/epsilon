@@ -1,0 +1,81 @@
+[
+    {
+        "id": 1,
+        "title": "JEE Mathematics",
+        "description": "Comprehensive JEE Mathematics preparation course covering all topics from class 11 and 12.",
+        "icon": "🎓",
+        "faculty": [
+            "Dr. Rajesh Kumar",
+            "Prof. Priya Sharma"
+        ],
+        "duration": "2 years",
+        "price": "₹25,000",
+        "active": true,
+        "order": 1,
+        "features": [
+            "Live Classes",
+            "Practice Tests",
+            "Study Material",
+            "Doubt Sessions"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Keam Mathematics",
+        "description": "Specialized course for Kerala Engineering Architecture Medical entrance examination.",
+        "icon": "📚",
+        "faculty": [
+            "Prof. Anil Menon"
+        ],
+        "duration": "1.5 years",
+        "price": "₹18,000",
+        "active": true,
+        "order": 2,
+        "features": [
+            "Live Classes",
+            "Mock Tests",
+            "Previous Papers",
+            "Personal Mentoring"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Plus Two Mathematics",
+        "description": "Complete mathematics course for class 11 and 12 students following state board curriculum.",
+        "icon": "✏️",
+        "faculty": [
+            "Ms. Lakshmi Devi",
+            "Mr. Suresh Kumar"
+        ],
+        "duration": "2 years",
+        "price": "₹15,000",
+        "active": true,
+        "order": 3,
+        "features": [
+            "Regular Classes",
+            "Chapter Tests",
+            "Homework Support",
+            "Exam Preparation"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Engineering Mathematics",
+        "description": "Advanced mathematics concepts for engineering students and professionals.",
+        "icon": "🔬",
+        "faculty": [
+            "Dr. Manoj Nair",
+            "Prof. Deepa Thomas"
+        ],
+        "duration": "1 year",
+        "price": "₹20,000",
+        "active": true,
+        "order": 4,
+        "features": [
+            "Advanced Topics",
+            "Problem Solving",
+            "Real Applications",
+            "Industry Focus"
+        ]
+    }
+]
