@@ -3,7 +3,7 @@ import Image from "next/image";
 import AnimatedTile from "../components/AnimatedTile";
 import ScrollAnimation from "../components/ScrollAnimation";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   LuGraduationCap,
   LuTrendingUp,
@@ -15,9 +15,11 @@ import {
   LuStar,
   LuPlayCircle,
   LuArrowRight,
-  LuCircleCheck
+  LuCircleCheck,
+  LuExternalLink
 } from "react-icons/lu";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp, FaStar } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 export default function Home() {
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
@@ -32,6 +34,58 @@ export default function Home() {
     { id: 1, src: '/epsilon/porsche.jpg', alt: 'Hero Background' }
   ];
 
+  // Reviews Data
+  const reviews = [
+    {
+      id: 1,
+      name: "Abhinav Nair",
+      initial: "A",
+      bg: "bg-orange-100",
+      text: "text-orange-700",
+      time: "2 months ago",
+      content: "Epsilon is hands down the best place for math in Trivandrum. The faculty makes even the hardest calculus problems seem simple. Highly recommended for JEE aspirants!"
+    },
+    {
+      id: 2,
+      name: "Sarah Thomas",
+      initial: "S",
+      bg: "bg-purple-100",
+      text: "text-purple-700",
+      time: "1 month ago",
+      content: "My daughter's grades improved significantly after joining. The personal attention she gets here is unmatched. Thank you, Epsilon team!"
+    },
+    {
+      id: 3,
+      name: "Rahul K.",
+      initial: "R",
+      bg: "bg-blue-100",
+      text: "text-blue-700",
+      time: "3 weeks ago",
+      content: "Professional and result-oriented. The study materials are very detailed, and the regular tests helped me build confidence."
+    },
+    {
+      id: 4,
+      name: "Mohammed F.",
+      initial: "M",
+      bg: "bg-green-100",
+      text: "text-green-700",
+      time: "5 months ago",
+      content: "Best coaching centre. The atmosphere is very conducive to learning. Sir explains concepts from the basics which helps a lot."
+    }
+  ];
+
+  const scrollRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = 350; // Approx card width + gap
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="w-full flex flex-col font-sans">
 
@@ -43,38 +97,41 @@ export default function Home() {
             src={heroImages[0].src}
             alt="Hero Background"
             fill
-            className="object-cover object-center"
+            className="object-cover object-bottom"
             priority
           />
           {/* Overlay gradient for readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 to-transparent"></div>
+          {/* Mobile Overlay: Dark Tint */}
+          <div className="absolute inset-0 bg-black/60 sm:hidden"></div>
+          {/* Desktop Overlay: White Gradient */}
+          <div className="absolute inset-0 hidden sm:block bg-gradient-to-r from-white/90 via-white/60 to-transparent"></div>
         </div>
 
         {/* Content */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 pt-20">
-          <div className="max-w-2xl animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-purple-100 text-purple-700 font-medium text-sm mb-6 shadow-sm">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 pt-20 text-center sm:text-left">
+          <div className="max-w-2xl mx-auto sm:mx-0 animate-fade-in-up">
+            <Link href="/admission" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 sm:bg-white/80 backdrop-blur-sm border border-white/20 sm:border-purple-100 text-white sm:text-purple-700 font-medium text-sm mb-6 shadow-sm hover:scale-105 hover:bg-white/30 sm:hover:bg-white transition-all duration-300 cursor-pointer">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-600"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500 sm:bg-purple-600"></span>
               </span>
               New Batches Starting Soon
-            </div>
+            </Link>
 
-            <h1 className="text-5xl sm:text-7xl font-bold leading-tight text-slate-900 mb-6 tracking-tight">
-              Excel in <span className="text-gradient">Mathematics</span><br />
+            <h1 className="text-5xl sm:text-7xl font-bold leading-tight text-white sm:text-slate-900 mb-6 tracking-tight drop-shadow-md sm:drop-shadow-none">
+              Excel in <span className="responsive-gradient-text">Mathematics</span><br />
               with Epsilon.
             </h1>
 
-            <p className="text-xl text-slate-700 mb-8 leading-relaxed max-w-lg">
+            <p className="text-xl text-slate-200 sm:text-slate-700 mb-8 leading-relaxed max-w-lg mx-auto sm:mx-0 drop-shadow-sm">
               From zero to infinity, we build the confidence and skills you need to master mathematics. Join the community of achievers today.
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <Link href="/contact" className="btn-primary flex items-center gap-2">
-                Start Your Journey <LuArrowRight className="w-5 h-5" />
+            <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
+              <Link href="/contact" className="btn-primary flex items-center justify-center gap-2 py-4 sm:py-3 shadow-lg hover:shadow-purple-500/30 hover:-translate-y-1 transition-all duration-300">
+                Book a Free Trial Class <LuArrowRight className="w-5 h-5" />
               </Link>
-              <Link href="/courses" className="btn-secondary flex items-center gap-2">
+              <Link href="/courses" className="btn-secondary flex items-center justify-center gap-2 py-4 sm:py-3 bg-white/10 text-white border-white/30 hover:bg-white/20 sm:bg-white sm:text-purple-700 sm:border-slate-200 sm:hover:bg-slate-50">
                 Explore Courses
               </Link>
             </div>
@@ -83,7 +140,7 @@ export default function Home() {
       </section>
 
       {/* ANNOUNCEMENT BAR */}
-      <div className="w-full bg-white border-y border-slate-200 py-4 overflow-hidden relative z-20 shadow-sm">
+      <div className="w-full bg-white border-y border-slate-200 py-4 overflow-hidden relative z-20 shadow-sm hidden sm:block">
         <div className="ticker-wrap">
           <div className="ticker">
             {[...announcements, ...announcements, ...announcements].map((item, i) => (
@@ -96,8 +153,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* STATS SECTION */}
-      <ScrollAnimation className="w-full py-16 bg-white relative z-10 -mt-20">
+      {/* STATS SECTION (Hidden on mobile) */}
+      <ScrollAnimation className="w-full py-16 bg-white relative z-10 hidden md:block">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <StatCard icon={<LuUsers />} number="1000+" label="Students Taught" />
@@ -167,6 +224,8 @@ export default function Home() {
         </div>
       </ScrollAnimation>
 
+
+
       {/* ADMISSION CTA */}
       <ScrollAnimation className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-slate-900"></div>
@@ -197,7 +256,7 @@ export default function Home() {
               <h2 className="text-3xl font-bold text-slate-900">Latest Videos</h2>
               <p className="text-slate-600 mt-2">Watch our latest tutorials and problem-solving sessions.</p>
             </div>
-            <Link href="https://youtube.com" target="_blank" className="hidden md:flex items-center gap-2 text-purple-600 font-semibold hover:text-purple-700">
+            <Link href="https://www.youtube.com/@Epsilon_tvm" target="_blank" className="hidden md:flex items-center gap-2 text-purple-600 font-semibold hover:text-purple-700">
               View Channel <LuArrowRight />
             </Link>
           </div>
@@ -206,12 +265,88 @@ export default function Home() {
             <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
               <iframe
                 className="absolute inset-0 w-full h-full"
-                src={`https://www.youtube.com/embed/videoseries?list=${process.env.NEXT_PUBLIC_YT_PLAYLIST_ID || 'PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG'}`}
+                src="https://www.youtube.com/embed/LJOxnSkNsFQ"
                 title="YouTube playlist"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               />
             </div>
+          </div>
+        </div>
+      </ScrollAnimation>
+
+      {/* SUCCESS RATE & REVIEWS (Google Integration Style) */}
+      <ScrollAnimation className="py-20 bg-[#f8fafc] relative overflow-hidden">
+        <div className="w-full">
+          {/* Header */}
+          <div className="text-center mb-12 px-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              Our Success Stories
+            </h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Real feedback from students who transformed their mathematics journey.
+            </p>
+          </div>
+
+          {/* Manual Carousel Container */}
+          <div className="relative w-full px-4 md:px-12">
+
+            {/* Left Button */}
+            <button
+              onClick={() => scroll('left')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-slate-600 hover:text-purple-600 hover:scale-110 active:scale-95 transition-all duration-300 hidden md:flex"
+              aria-label="Previous Review"
+            >
+              <LuArrowRight className="w-6 h-6 rotate-180" />
+            </button>
+
+            {/* Right Button */}
+            <button
+              onClick={() => scroll('right')}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-slate-600 hover:text-purple-600 hover:scale-110 active:scale-95 transition-all duration-300 hidden md:flex"
+              aria-label="Next Review"
+            >
+              <LuArrowRight className="w-6 h-6" />
+            </button>
+
+            <div
+              ref={scrollRef}
+              className="flex gap-6 overflow-x-auto pb-8 pt-4 snap-x snap-mandatory scrollbar-hide scroll-smooth"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {[...reviews, ...reviews].map((review, index) => (
+                <div key={`${review.id}-${index}`} className="min-w-[300px] md:min-w-[350px] snap-center">
+                  <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between h-full hover:shadow-md transition-shadow">
+                    <div>
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-10 h-10 rounded-full ${review.bg} flex items-center justify-center ${review.text} font-bold text-sm`}>
+                            {review.initial}
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-slate-900 text-sm">{review.name}</h4>
+                            <p className="text-xs text-slate-500">{review.time}</p>
+                          </div>
+                        </div>
+                        <FcGoogle className="text-xl" />
+                      </div>
+                      <div className="flex text-amber-400 text-sm mb-3">
+                        <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                      </div>
+                      <p className="text-slate-600 text-sm leading-relaxed">
+                        "{review.content}"
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile Swipe Indicators (Optional hint) */}
+            <div className="flex md:hidden justify-center gap-2 mt-4">
+              {/* Simple dots or just let native swipe handle it */}
+            </div>
+
           </div>
         </div>
       </ScrollAnimation>

@@ -23,7 +23,7 @@ export default function Gallery() {
     },
     {
       id: 2,
-      src: '/epsilon/logo.jpg',
+      src: '/epsilon/logo.png',
       caption: 'Epsilon Logo',
       description: 'Official Epsilon Mathematics Institute logo and branding',
       category: 'Branding',

@@ -39,7 +39,7 @@ export default function Contact() {
           <div className="flex flex-col items-center mb-6">
             <div className="w-20 h-20 rounded-full bg-gradient-to-br from-brandPurple to-brandGold flex items-center justify-center shadow-lg mb-2 overflow-hidden">
               <Image
-                src="/logo.jpg"
+                src="/epsilon/logo.png"
                 alt="Epsilon Centre Logo"
                 width={64}
                 height={64}
