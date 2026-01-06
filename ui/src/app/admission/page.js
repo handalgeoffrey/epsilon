@@ -59,36 +59,36 @@ export default function Admission() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center pt-navbar pb-12 w-full bg-[#f8fafc]">
+    <div className="min-h-screen flex flex-col items-center justify-center pt-navbar pb-12 w-full bg-[#f8fafc] dark:bg-slate-900 transition-colors duration-300">
       <div className="w-full max-w-4xl mx-auto px-6 pt-12 pb-8 text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold gradient-text mb-4">Apply for Admission</h1>
-        <p className="text-slate-600 max-w-2xl mx-auto">Start your journey towards mathematical excellence. Fill out the form below to register.</p>
+        <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">Start your journey towards mathematical excellence. Fill out the form below to register.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="glass max-w-lg w-full mx-auto px-8 py-10 rounded-3xl shadow-2xl flex flex-col gap-5 border border-white/50 bg-white/40 backdrop-blur-xl relative z-10">
+      <form onSubmit={handleSubmit} className="glass max-w-lg w-full mx-auto px-8 py-10 rounded-3xl shadow-2xl flex flex-col gap-5 border border-white/50 dark:border-white/10 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl relative z-10 transition-colors duration-300">
 
         {/* Student Name */}
         <div className="flex flex-col gap-2">
-          <label className="font-semibold text-slate-800 flex items-center gap-2"><FaUser className="text-purple-600" /> Student Name*</label>
-          <input name="studentName" value={form.studentName} onChange={handleChange} className="bg-white/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all outline-none" required placeholder="Enter student name" />
+          <label className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><FaUser className="text-purple-600 dark:text-purple-400" /> Student Name*</label>
+          <input name="studentName" value={form.studentName} onChange={handleChange} className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 dark:border-purple-900/30 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 text-slate-900 dark:text-white transition-all outline-none" required placeholder="Enter student name" />
         </div>
 
         {/* SELECT COURSE DROPDOWN */}
         <div className="flex flex-col gap-2 relative">
-          <label className="font-semibold text-slate-800 flex items-center gap-2"><FaGraduationCap className="text-purple-600" /> Select Course*</label>
+          <label className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><FaGraduationCap className="text-purple-600 dark:text-purple-400" /> Select Course*</label>
           <div className="relative" tabIndex={0} onBlur={() => setTimeout(() => setOpenDropdown(''), 200)}>
-            <button type="button" className={`w-full flex items-center justify-between bg-white/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all outline-none ${openDropdown === 'course' ? 'ring-2 ring-purple-200 border-purple-500' : ''}`} onClick={() => setOpenDropdown(openDropdown === 'course' ? '' : 'course')}>
-              <span className={form.course ? 'text-slate-900' : 'text-slate-400'}>{form.course || 'Select a Course'}</span>
-              <FaChevronDown className={`ml-2 text-purple-600 transition-transform duration-300 ${openDropdown === 'course' ? 'rotate-180' : ''}`} />
+            <button type="button" className={`w-full flex items-center justify-between bg-white/70 dark:bg-slate-800/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 dark:border-purple-900/30 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all outline-none ${openDropdown === 'course' ? 'ring-2 ring-purple-200 dark:ring-purple-900 border-purple-500' : ''}`} onClick={() => setOpenDropdown(openDropdown === 'course' ? '' : 'course')}>
+              <span className={form.course ? 'text-slate-900 dark:text-white' : 'text-slate-400'}>{form.course || 'Select a Course'}</span>
+              <FaChevronDown className={`ml-2 text-purple-600 dark:text-purple-400 transition-transform duration-300 ${openDropdown === 'course' ? 'rotate-180' : ''}`} />
             </button>
             {openDropdown === 'course' && (
-              <div className="absolute left-0 right-0 mt-2 z-30 bg-white rounded-xl shadow-xl border border-purple-100 max-h-60 overflow-y-auto animate-dropdown-open">
+              <div className="absolute left-0 right-0 mt-2 z-30 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-purple-100 dark:border-purple-900 max-h-60 overflow-y-auto animate-dropdown-open">
                 {courses.length > 0 ? (
                   courses.map(c => (
-                    <div key={c.id} className="px-5 py-3 hover:bg-purple-50 cursor-pointer text-slate-700 font-medium transition-colors border-b border-slate-50 last:border-none flex items-center justify-between"
+                    <div key={c.id} className="px-5 py-3 hover:bg-purple-50 dark:hover:bg-purple-900/20 cursor-pointer text-slate-700 dark:text-slate-300 font-medium transition-colors border-b border-slate-50 dark:border-slate-800 last:border-none flex items-center justify-between"
                       onMouseDown={() => { setForm(f => ({ ...f, course: c.title })); setOpenDropdown(''); }}>
                       {c.title}
-                      {c.active && <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Open</span>}
+                      {c.active && <span className="text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-2 py-0.5 rounded-full">Open</span>}
                     </div>
                   ))
                 ) : (
@@ -102,16 +102,16 @@ export default function Admission() {
         <div className="grid grid-cols-2 gap-4">
           {/* Custom Dropdown for Class */}
           <div className="flex flex-col gap-2 relative">
-            <label className="font-semibold text-slate-800 flex items-center gap-2"><FaUserFriends className="text-purple-600" /> Class*</label>
+            <label className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><FaUserFriends className="text-purple-600 dark:text-purple-400" /> Class*</label>
             <div className="relative" tabIndex={0} onBlur={() => setTimeout(() => setOpenDropdown(''), 200)}>
-              <button type="button" className={`w-full flex items-center justify-between bg-white/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all outline-none ${openDropdown === 'class' ? 'ring-2 ring-purple-200 border-purple-500' : ''}`} onClick={() => setOpenDropdown(openDropdown === 'class' ? '' : 'class')}>
-                <span className={form.class ? 'text-slate-900' : 'text-slate-400'}>{form.class || 'Class'}</span>
-                <FaChevronDown className={`ml-1 text-purple-600 text-sm transition-transform duration-300 ${openDropdown === 'class' ? 'rotate-180' : ''}`} />
+              <button type="button" className={`w-full flex items-center justify-between bg-white/70 dark:bg-slate-800/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 dark:border-purple-900/30 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all outline-none ${openDropdown === 'class' ? 'ring-2 ring-purple-200 dark:ring-purple-900 border-purple-500' : ''}`} onClick={() => setOpenDropdown(openDropdown === 'class' ? '' : 'class')}>
+                <span className={form.class ? 'text-slate-900 dark:text-white' : 'text-slate-400'}>{form.class || 'Class'}</span>
+                <FaChevronDown className={`ml-1 text-purple-600 dark:text-purple-400 text-sm transition-transform duration-300 ${openDropdown === 'class' ? 'rotate-180' : ''}`} />
               </button>
               {openDropdown === 'class' && (
-                <div className="absolute left-0 right-0 mt-2 z-30 bg-white rounded-xl shadow-xl border border-purple-100 animate-dropdown-open">
+                <div className="absolute left-0 right-0 mt-2 z-30 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-purple-100 dark:border-purple-900 animate-dropdown-open">
                   {classes.map(c => (
-                    <div key={c} className="px-5 py-3 hover:bg-purple-50 cursor-pointer text-slate-700 font-medium transition-colors border-b border-slate-50 last:border-none" onMouseDown={() => { setForm(f => ({ ...f, class: c })); setOpenDropdown(''); }}>
+                    <div key={c} className="px-5 py-3 hover:bg-purple-50 dark:hover:bg-purple-900/20 cursor-pointer text-slate-700 dark:text-slate-300 font-medium transition-colors border-b border-slate-50 dark:border-slate-800 last:border-none" onMouseDown={() => { setForm(f => ({ ...f, class: c })); setOpenDropdown(''); }}>
                       {c}
                     </div>
                   ))}
@@ -122,16 +122,16 @@ export default function Admission() {
 
           {/* Custom Dropdown for Syllabus */}
           <div className="flex flex-col gap-2 relative">
-            <label className="font-semibold text-slate-800 flex items-center gap-2"><FaBookOpen className="text-purple-600" /> Syllabus*</label>
+            <label className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><FaBookOpen className="text-purple-600 dark:text-purple-400" /> Syllabus*</label>
             <div className="relative" tabIndex={0} onBlur={() => setTimeout(() => setOpenDropdown(''), 200)}>
-              <button type="button" className={`w-full flex items-center justify-between bg-white/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all outline-none ${openDropdown === 'syllabus' ? 'ring-2 ring-purple-200 border-purple-500' : ''}`} onClick={() => setOpenDropdown(openDropdown === 'syllabus' ? '' : 'syllabus')}>
-                <span className={form.syllabus ? 'text-slate-900' : 'text-slate-400'}>{form.syllabus || 'Syllabus'}</span>
-                <FaChevronDown className={`ml-1 text-purple-600 text-sm transition-transform duration-300 ${openDropdown === 'syllabus' ? 'rotate-180' : ''}`} />
+              <button type="button" className={`w-full flex items-center justify-between bg-white/70 dark:bg-slate-800/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 dark:border-purple-900/30 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 transition-all outline-none ${openDropdown === 'syllabus' ? 'ring-2 ring-purple-200 dark:ring-purple-900 border-purple-500' : ''}`} onClick={() => setOpenDropdown(openDropdown === 'syllabus' ? '' : 'syllabus')}>
+                <span className={form.syllabus ? 'text-slate-900 dark:text-white' : 'text-slate-400'}>{form.syllabus || 'Syllabus'}</span>
+                <FaChevronDown className={`ml-1 text-purple-600 dark:text-purple-400 text-sm transition-transform duration-300 ${openDropdown === 'syllabus' ? 'rotate-180' : ''}`} />
               </button>
               {openDropdown === 'syllabus' && (
-                <div className="absolute left-0 right-0 mt-2 z-30 bg-white rounded-xl shadow-xl border border-purple-100 animate-dropdown-open">
+                <div className="absolute left-0 right-0 mt-2 z-30 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-purple-100 dark:border-purple-900 animate-dropdown-open">
                   {syllabi.map(s => (
-                    <div key={s} className="px-5 py-3 hover:bg-purple-50 cursor-pointer text-slate-700 font-medium transition-colors border-b border-slate-50 last:border-none" onMouseDown={() => { setForm(f => ({ ...f, syllabus: s })); setOpenDropdown(''); }}>
+                    <div key={s} className="px-5 py-3 hover:bg-purple-50 dark:hover:bg-purple-900/20 cursor-pointer text-slate-700 dark:text-slate-300 font-medium transition-colors border-b border-slate-50 dark:border-slate-800 last:border-none" onMouseDown={() => { setForm(f => ({ ...f, syllabus: s })); setOpenDropdown(''); }}>
                       {s}
                     </div>
                   ))}
@@ -143,32 +143,32 @@ export default function Admission() {
 
         {/* School Name */}
         <div className="flex flex-col gap-2">
-          <label className="font-semibold text-slate-800 flex items-center gap-2"><FaSchool className="text-purple-600" /> School Name*</label>
-          <input name="school" value={form.school} onChange={handleChange} className="bg-white/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all outline-none" required placeholder="Enter school name" />
+          <label className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><FaSchool className="text-purple-600 dark:text-purple-400" /> School Name*</label>
+          <input name="school" value={form.school} onChange={handleChange} className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 dark:border-purple-900/30 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 text-slate-900 dark:text-white transition-all outline-none" required placeholder="Enter school name" />
         </div>
 
         {/* Guardian Name */}
         <div className="flex flex-col gap-2">
-          <label className="font-semibold text-slate-800 flex items-center gap-2"><FaUserFriends className="text-purple-600" /> Guardian Name*</label>
-          <input name="guardian" value={form.guardian} onChange={handleChange} className="bg-white/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all outline-none" required placeholder="Enter guardian name" />
+          <label className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><FaUserFriends className="text-purple-600 dark:text-purple-400" /> Guardian Name*</label>
+          <input name="guardian" value={form.guardian} onChange={handleChange} className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 dark:border-purple-900/30 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 text-slate-900 dark:text-white transition-all outline-none" required placeholder="Enter guardian name" />
         </div>
 
         {/* Parent WhatsApp */}
         <div className="flex flex-col gap-2">
-          <label className="font-semibold text-slate-800 flex items-center gap-2"><FaWhatsapp className="text-purple-600" /> Parent WhatsApp Number*</label>
-          <input name="parentWhatsapp" value={form.parentWhatsapp} onChange={handleChange} className="bg-white/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all outline-none" required placeholder="Enter parent WhatsApp number" />
+          <label className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><FaWhatsapp className="text-purple-600 dark:text-purple-400" /> Parent WhatsApp Number*</label>
+          <input name="parentWhatsapp" value={form.parentWhatsapp} onChange={handleChange} className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 dark:border-purple-900/30 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 text-slate-900 dark:text-white transition-all outline-none" required placeholder="Enter parent WhatsApp number" />
         </div>
 
         {/* Student WhatsApp */}
         <div className="flex flex-col gap-2">
-          <label className="font-semibold text-slate-800 flex items-center gap-2"><FaWhatsapp className="text-purple-600" /> Student WhatsApp Number</label>
-          <input name="studentWhatsapp" value={form.studentWhatsapp} onChange={handleChange} className="bg-white/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all outline-none" placeholder="Enter student WhatsApp number" />
+          <label className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><FaWhatsapp className="text-purple-600 dark:text-purple-400" /> Student WhatsApp Number</label>
+          <input name="studentWhatsapp" value={form.studentWhatsapp} onChange={handleChange} className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 dark:border-purple-900/30 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 text-slate-900 dark:text-white transition-all outline-none" placeholder="Enter student WhatsApp number" />
         </div>
 
         {/* Email */}
         <div className="flex flex-col gap-2">
-          <label className="font-semibold text-slate-800 flex items-center gap-2"><FaEnvelope className="text-purple-600" /> Email*</label>
-          <input name="email" type="email" value={form.email} onChange={handleChange} className="bg-white/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all outline-none" required placeholder="Enter email address" />
+          <label className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"><FaEnvelope className="text-purple-600 dark:text-purple-400" /> Email*</label>
+          <input name="email" type="email" value={form.email} onChange={handleChange} className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-100 dark:border-purple-900/30 shadow-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 text-slate-900 dark:text-white transition-all outline-none" required placeholder="Enter email address" />
         </div>
 
         {error && <div className="text-red-500 font-medium text-center bg-red-50 py-2 rounded-lg border border-red-100">{error}</div>}
@@ -178,13 +178,13 @@ export default function Admission() {
         </button>
 
         {submitted && (
-          <div className="absolute inset-0 bg-white/90 backdrop-blur-md rounded-3xl flex flex-col items-center justify-center p-8 text-center animate-fade-in-up z-40">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-3xl mb-4">
+          <div className="absolute inset-0 bg-white/90 dark:bg-slate-900/95 backdrop-blur-md rounded-3xl flex flex-col items-center justify-center p-8 text-center animate-fade-in-up z-40 border border-white/20 dark:border-white/5">
+            <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center text-green-600 dark:text-green-400 text-3xl mb-4">
               <FaBookOpen />
             </div>
-            <h3 className="text-2xl font-bold text-slate-900 mb-2">Application Received!</h3>
-            <p className="text-slate-600">Thank you for applying. Our team will contact you shortly.</p>
-            <button onClick={() => setSubmitted(false)} className="mt-6 text-purple-600 font-semibold hover:underline">Submit another response</button>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Application Received!</h3>
+            <p className="text-slate-600 dark:text-slate-300">Thank you for applying. Our team will contact you shortly.</p>
+            <button onClick={() => setSubmitted(false)} className="mt-6 text-purple-600 dark:text-purple-400 font-semibold hover:underline">Submit another response</button>
           </div>
         )}
       </form>

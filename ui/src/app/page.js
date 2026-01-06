@@ -23,6 +23,24 @@ import { FcGoogle } from "react-icons/fc";
 
 export default function Home() {
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+  const [latestVideo, setLatestVideo] = useState(null);
+
+  useEffect(() => {
+    const fetchLatestVideo = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/api/videos');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.length > 0) {
+            setLatestVideo(data[0]); // Use the first video as the latest
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch latest video');
+      }
+    };
+    fetchLatestVideo();
+  }, []);
 
   const announcements = [
     { id: 1, text: 'Admissions open for classes 10, 11, 12 — enroll now!', emoji: '🎓' },
@@ -140,11 +158,11 @@ export default function Home() {
       </section>
 
       {/* ANNOUNCEMENT BAR */}
-      <div className="w-full bg-white border-y border-slate-200 py-4 overflow-hidden relative z-20 shadow-sm hidden sm:block">
+      <div className="w-full bg-white dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800 py-4 overflow-hidden relative z-20 shadow-sm hidden sm:block transition-colors duration-300">
         <div className="ticker-wrap">
           <div className="ticker">
             {[...announcements, ...announcements, ...announcements].map((item, i) => (
-              <div key={i} className="inline-flex items-center mx-8 text-slate-700 font-medium">
+              <div key={i} className="inline-flex items-center mx-8 text-slate-700 dark:text-slate-300 font-medium">
                 <span className="mr-3 text-xl">{item.emoji}</span>
                 {item.text}
               </div>
@@ -154,7 +172,7 @@ export default function Home() {
       </div>
 
       {/* STATS SECTION (Hidden on mobile) */}
-      <ScrollAnimation className="w-full py-16 bg-white relative z-10 hidden md:block">
+      <ScrollAnimation className="w-full py-16 bg-white dark:bg-slate-950 relative z-10 hidden md:block transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <StatCard icon={<LuUsers />} number="1000+" label="Students Taught" />
@@ -166,14 +184,14 @@ export default function Home() {
       </ScrollAnimation>
 
       {/* WHY CHOOSE EPSILON */}
-      <ScrollAnimation className="py-24 bg-slate-50 relative overflow-hidden">
+      <ScrollAnimation className="py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 relative z-10">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-slate-900 mb-6">
-                Why Choose <span className="text-purple-600">Epsilon?</span>
+              <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-6">
+                Why Choose <span className="text-purple-600 dark:text-purple-400">Epsilon?</span>
               </h2>
-              <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+              <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
                 We don't just teach formulas; we teach you how to think. Our comprehensive approach ensures that every student builds a strong foundation for academic success.
               </p>
 
@@ -186,35 +204,35 @@ export default function Home() {
 
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-amber-500 rounded-2xl opacity-20 blur-2xl"></div>
-              <div className="relative bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
+              <div className="relative bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 transition-colors duration-300">
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="p-3 bg-purple-100 rounded-lg text-purple-600">
+                    <div className="p-3 bg-purple-100 dark:bg-purple-900/40 rounded-lg text-purple-600 dark:text-purple-400">
                       <LuPuzzle className="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg text-slate-900">Problem Solving Focus</h3>
-                      <p className="text-slate-600 mt-1">Emphasis on developing strong analytical skills.</p>
+                      <h3 className="font-bold text-lg text-slate-900 dark:text-white">Problem Solving Focus</h3>
+                      <p className="text-slate-600 dark:text-slate-400 mt-1">Emphasis on developing strong analytical skills.</p>
                     </div>
                   </div>
-                  <div className="w-full h-px bg-slate-100"></div>
+                  <div className="w-full h-px bg-slate-100 dark:bg-slate-700"></div>
                   <div className="flex items-start gap-4">
-                    <div className="p-3 bg-amber-100 rounded-lg text-amber-600">
+                    <div className="p-3 bg-amber-100 dark:bg-amber-900/40 rounded-lg text-amber-600 dark:text-amber-400">
                       <LuBookOpen className="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg text-slate-900">Comprehensive Curriculum</h3>
-                      <p className="text-slate-600 mt-1">Covering NCERT, ISC, and SAT mathematics.</p>
+                      <h3 className="font-bold text-lg text-slate-900 dark:text-white">Comprehensive Curriculum</h3>
+                      <p className="text-slate-600 dark:text-slate-400 mt-1">Covering NCERT, ISC, and SAT mathematics.</p>
                     </div>
                   </div>
-                  <div className="w-full h-px bg-slate-100"></div>
+                  <div className="w-full h-px bg-slate-100 dark:bg-slate-700"></div>
                   <div className="flex items-start gap-4">
-                    <div className="p-3 bg-blue-100 rounded-lg text-blue-600">
+                    <div className="p-3 bg-blue-100 dark:bg-blue-900/40 rounded-lg text-blue-600 dark:text-blue-400">
                       <LuStar className="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg text-slate-900">Success Guarantee</h3>
-                      <p className="text-slate-600 mt-1">Our methodology ensures consistent improvement.</p>
+                      <h3 className="font-bold text-lg text-slate-900 dark:text-white">Success Guarantee</h3>
+                      <p className="text-slate-600 dark:text-slate-400 mt-1">Our methodology ensures consistent improvement.</p>
                     </div>
                   </div>
                 </div>
@@ -249,23 +267,23 @@ export default function Home() {
       </ScrollAnimation>
 
       {/* LATEST VIDEOS */}
-      <ScrollAnimation className="py-24 bg-white">
+      <ScrollAnimation className="py-24 bg-white dark:bg-slate-950 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
           <div className="flex items-center justify-between mb-12">
             <div>
-              <h2 className="text-3xl font-bold text-slate-900">Latest Videos</h2>
-              <p className="text-slate-600 mt-2">Watch our latest tutorials and problem-solving sessions.</p>
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Latest Videos</h2>
+              <p className="text-slate-600 dark:text-slate-400 mt-2">Watch our latest tutorials and problem-solving sessions.</p>
             </div>
-            <Link href="https://www.youtube.com/@Epsilon_tvm" target="_blank" className="hidden md:flex items-center gap-2 text-purple-600 font-semibold hover:text-purple-700">
+            <Link href="https://www.youtube.com/@Epsilon_tvm" target="_blank" className="hidden md:flex items-center gap-2 text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 dark:hover:text-purple-300">
               View Channel <LuArrowRight />
             </Link>
           </div>
 
-          <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-slate-900">
+          <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 bg-slate-900">
             <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
               <iframe
                 className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/LJOxnSkNsFQ"
+                src={`https://www.youtube.com/embed/${latestVideo ? latestVideo.videoId : 'LJOxnSkNsFQ'}`}
                 title="YouTube playlist"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -276,14 +294,14 @@ export default function Home() {
       </ScrollAnimation>
 
       {/* SUCCESS RATE & REVIEWS (Google Integration Style) */}
-      <ScrollAnimation className="py-20 bg-[#f8fafc] relative overflow-hidden">
+      <ScrollAnimation className="py-20 bg-[#f8fafc] dark:bg-slate-900 relative overflow-hidden transition-colors duration-300">
         <div className="w-full">
           {/* Header */}
           <div className="text-center mb-12 px-6">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
               Our Success Stories
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
               Real feedback from students who transformed their mathematics journey.
             </p>
           </div>
@@ -294,7 +312,7 @@ export default function Home() {
             {/* Left Button */}
             <button
               onClick={() => scroll('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-slate-600 hover:text-purple-600 hover:scale-110 active:scale-95 transition-all duration-300 hidden md:flex"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-white dark:bg-slate-800 rounded-full shadow-lg border border-slate-100 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-400 hover:scale-110 active:scale-95 transition-all duration-300 hidden md:flex"
               aria-label="Previous Review"
             >
               <LuArrowRight className="w-6 h-6 rotate-180" />
@@ -303,7 +321,7 @@ export default function Home() {
             {/* Right Button */}
             <button
               onClick={() => scroll('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-slate-600 hover:text-purple-600 hover:scale-110 active:scale-95 transition-all duration-300 hidden md:flex"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-white dark:bg-slate-800 rounded-full shadow-lg border border-slate-100 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-400 hover:scale-110 active:scale-95 transition-all duration-300 hidden md:flex"
               aria-label="Next Review"
             >
               <LuArrowRight className="w-6 h-6" />
@@ -316,7 +334,7 @@ export default function Home() {
             >
               {[...reviews, ...reviews].map((review, index) => (
                 <div key={`${review.id}-${index}`} className="min-w-[300px] md:min-w-[350px] snap-center">
-                  <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between h-full hover:shadow-md transition-shadow">
+                  <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col justify-between h-full hover:shadow-md transition-all duration-300">
                     <div>
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex items-center gap-3">
@@ -324,8 +342,8 @@ export default function Home() {
                             {review.initial}
                           </div>
                           <div>
-                            <h4 className="font-bold text-slate-900 text-sm">{review.name}</h4>
-                            <p className="text-xs text-slate-500">{review.time}</p>
+                            <h4 className="font-bold text-slate-900 dark:text-white text-sm">{review.name}</h4>
+                            <p className="text-xs text-slate-500 dark:text-slate-400">{review.time}</p>
                           </div>
                         </div>
                         <FcGoogle className="text-xl" />
@@ -333,7 +351,7 @@ export default function Home() {
                       <div className="flex text-amber-400 text-sm mb-3">
                         <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                       </div>
-                      <p className="text-slate-600 text-sm leading-relaxed">
+                      <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                         "{review.content}"
                       </p>
                     </div>
@@ -367,10 +385,10 @@ export default function Home() {
 
 function StatCard({ icon, number, label }) {
   return (
-    <div className="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-purple-200 hover:shadow-lg transition-all duration-300 group">
-      <div className="text-4xl text-purple-600 mb-4 group-hover:scale-110 transition-transform duration-300">{icon}</div>
-      <div className="text-3xl font-bold text-slate-900 mb-1">{number}</div>
-      <div className="text-slate-600 font-medium">{label}</div>
+    <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:border-purple-200 dark:hover:border-purple-800 hover:shadow-lg transition-all duration-300 group">
+      <div className="text-4xl text-purple-600 dark:text-purple-400 mb-4 group-hover:scale-110 transition-transform duration-300">{icon}</div>
+      <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1">{number}</div>
+      <div className="text-slate-600 dark:text-slate-400 font-medium">{label}</div>
     </div>
   );
 }
@@ -378,10 +396,10 @@ function StatCard({ icon, number, label }) {
 function FeatureRow({ icon, title, desc }) {
   return (
     <div className="flex gap-4">
-      <div className="mt-1 text-purple-600 text-xl">{icon}</div>
+      <div className="mt-1 text-purple-600 dark:text-purple-400 text-xl">{icon}</div>
       <div>
-        <h4 className="font-bold text-slate-900 text-lg">{title}</h4>
-        <p className="text-slate-600">{desc}</p>
+        <h4 className="font-bold text-slate-900 dark:text-white text-lg">{title}</h4>
+        <p className="text-slate-600 dark:text-slate-400">{desc}</p>
       </div>
     </div>
   );

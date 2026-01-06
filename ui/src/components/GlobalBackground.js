@@ -11,7 +11,7 @@ export default function GlobalBackground() {
                 className="object-cover object-center blur-3xl opacity-30 scale-110"
                 priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white/80"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white/80 dark:from-slate-900/90 dark:via-slate-900/80 dark:to-slate-900/90 transition-colors duration-500"></div>
         </div>
     );
 }

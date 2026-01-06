@@ -9,7 +9,7 @@ export default function AnimatedTile({ icon, title, description, children, class
       whileHover={{ scale: 1.045, boxShadow: '0 12px 32px 0 rgba(132,67,220,0.18), 0 2px 12px 0 rgba(223,167,32,0.10)' }}
       transition={{ duration: 0.6, type: 'spring', bounce: 0.25 }}
       viewport={{ once: true }}
-      className={`relative flex flex-col items-center justify-center min-h-[160px] min-w-[180px] max-w-full p-6 sm:p-8 rounded-2xl bg-white/80 border-2 border-transparent hover:border-gradient-to-r hover:from-brandPurple hover:to-brandGold shadow-xl overflow-hidden ${className}`}
+      className={`relative flex flex-col items-center justify-center min-h-[160px] min-w-[180px] max-w-full p-6 sm:p-8 rounded-2xl bg-white/80 dark:bg-slate-800/80 border-2 border-transparent hover:border-gradient-to-r hover:from-brandPurple hover:to-brandGold shadow-xl overflow-hidden transition-colors duration-300 ${className}`}
       style={{ borderImage: 'linear-gradient(90deg, #8443dc, #dfa720) 1', borderWidth: 2, borderStyle: 'solid' }}
     >
       {/* SVG overlay for advanced graphics */}
@@ -19,7 +19,7 @@ export default function AnimatedTile({ icon, title, description, children, class
       </svg>
       {icon && <div className="mb-2 text-4xl">{icon}</div>}
       {title && <div className="gradient-text text-xl font-bold mb-1 text-center">{title}</div>}
-      {description && <div className="text-base text-gray-700 text-center mb-1">{description}</div>}
+      {description && <div className="text-base text-gray-700 dark:text-gray-300 text-center mb-1">{description}</div>}
       {children}
     </motion.div>
   );

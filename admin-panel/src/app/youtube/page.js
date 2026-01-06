@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FaArrowLeft, FaYoutube, FaPlay, FaEdit, FaTrash, FaSave } from 'react-icons/fa';
 import toast from 'react-hot-toast';
@@ -13,26 +13,27 @@ export default function YouTubeIntegration() {
     syncInterval: 24 // hours
   });
 
-  const [latestVideos, setLatestVideos] = useState([
-    {
-      id: '1',
-      title: 'Mastering Quadratic Equations',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      videoId: 'dQw4w9WgXcQ',
-      publishedAt: '2024-01-15',
-      duration: '15:30',
-      views: '1.2K'
-    },
-    {
-      id: '2',
-      title: 'Calculus Fundamentals',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-      videoId: 'dQw4w9WgXcQ',
-      publishedAt: '2024-01-10',
-      duration: '22:15',
-      views: '856'
+  const [latestVideos, setLatestVideos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch videos on mount
+  useEffect(() => {
+    fetchVideos();
+  }, []);
+
+  const fetchVideos = async () => {
+    try {
+      const res = await fetch('/api/videos');
+      if (res.ok) {
+        const data = await res.json();
+        setLatestVideos(data);
+      }
+    } catch (error) {
+      toast.error('Failed to load videos');
+    } finally {
+      setIsLoading(false);
     }
-  ]);
+  };
 
   const [showApiForm, setShowApiForm] = useState(false);
   const [newApiKey, setNewApiKey] = useState('');
@@ -42,8 +43,8 @@ export default function YouTubeIntegration() {
   };
 
   const saveConfig = () => {
-    // Here you would typically save to your backend
-    toast.success('YouTube configuration saved successfully');
+    // Ideally save config to a separate endpoints, but for now we focus on videos
+    toast.success('YouTube configuration saved (Locally)');
   };
 
   const syncVideos = async () => {
@@ -53,17 +54,43 @@ export default function YouTubeIntegration() {
     }
 
     toast.loading('Syncing videos from YouTube...');
-    
+
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // In real implementation, you would call YouTube Data API
-      // const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${youtubeConfig.channelId}&order=date&maxResults=10&key=${youtubeConfig.apiKey}`);
-      
-      toast.success('Videos synced successfully');
+      // Fetch from YouTube Data API
+      const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${youtubeConfig.channelId}&order=date&maxResults=10&key=${youtubeConfig.apiKey}`);
+      const data = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error.message);
+      }
+
+      const videos = data.items.map(item => ({
+        id: item.id.videoId, // Use YouTube ID as unique ID
+        title: item.snippet.title,
+        thumbnail: item.snippet.thumbnails.medium.url,
+        videoId: item.id.videoId,
+        publishedAt: new Date(item.snippet.publishedAt).toLocaleDateString(),
+        duration: 'N/A', // Duration requires a separate API call, skipping for simplicity
+        views: 'N/A'
+      }));
+
+      // Save to our backend
+      const saveRes = await fetch('/api/videos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'sync', videos })
+      });
+
+      if (saveRes.ok) {
+        setLatestVideos(videos);
+        toast.success('Videos synced successfully');
+      } else {
+        throw new Error('Failed to save to backend');
+      }
+
     } catch (error) {
-      toast.error('Failed to sync videos. Please check your API key and try again.');
+      console.error(error);
+      toast.error(`Failed to sync: ${error.message}`);
     }
   };
 
@@ -72,16 +99,28 @@ export default function YouTubeIntegration() {
       toast.error('Please enter an API key');
       return;
     }
-    
+
     setYoutubeConfig(prev => ({ ...prev, apiKey: newApiKey }));
     setNewApiKey('');
     setShowApiForm(false);
     toast.success('API key added successfully');
   };
 
-  const removeVideo = (id) => {
-    setLatestVideos(prev => prev.filter(video => video.id !== id));
-    toast.success('Video removed successfully');
+  const removeVideo = async (id) => {
+    try {
+      const res = await fetch('/api/videos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'delete', id })
+      });
+
+      if (res.ok) {
+        setLatestVideos(prev => prev.filter(video => video.id !== id));
+        toast.success('Video removed successfully');
+      }
+    } catch (error) {
+      toast.error('Failed to remove video');
+    }
   };
 
   return (
@@ -105,7 +144,7 @@ export default function YouTubeIntegration() {
         {/* Configuration Section */}
         <div className="card mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">YouTube Configuration</h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -122,7 +161,7 @@ export default function YouTubeIntegration() {
                 Found in your YouTube channel URL
               </p>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Playlist ID
@@ -153,7 +192,7 @@ export default function YouTubeIntegration() {
                 </button>
               )}
             </div>
-            
+
             {youtubeConfig.apiKey ? (
               <div className="flex items-center gap-3 p-3 bg-green-50 border border-green-200 rounded-lg">
                 <span className="text-green-800 text-sm">✓ API Key configured</span>
@@ -206,7 +245,7 @@ export default function YouTubeIntegration() {
                 Enable automatic video synchronization
               </label>
             </div>
-            
+
             {youtubeConfig.autoSync && (
               <div className="ml-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">

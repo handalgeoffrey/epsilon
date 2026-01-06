@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import GlobalBackground from '../components/GlobalBackground';
+import { ThemeProvider } from "../components/ThemeProvider";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -17,16 +18,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${outfit.variable} antialiased bg-transparent min-h-screen font-sans`}
       >
-        <GlobalBackground />
-        <Navbar />
-        <main className="w-full flex flex-col items-center justify-start">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+          <GlobalBackground />
+          <Navbar />
+          <main className="w-full flex flex-col items-center justify-start">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

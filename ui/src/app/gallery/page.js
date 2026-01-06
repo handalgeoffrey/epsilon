@@ -63,7 +63,7 @@ export default function Gallery() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center py-24 w-full bg-slate-50">
+      <div className="min-h-screen flex flex-col items-center justify-center py-24 w-full bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
           <p className="text-slate-600 font-medium">Loading gallery...</p>
@@ -73,27 +73,24 @@ export default function Gallery() {
   }
 
   return (
-    <div className="w-full flex flex-col items-center justify-start min-h-screen bg-slate-50 font-sans">
+    <div className="w-full flex flex-col items-center justify-start min-h-screen bg-slate-50 dark:bg-slate-900 font-sans transition-colors duration-300">
 
       {/* HERO SECTION */}
       <section className="relative w-full pt-32 pb-16 px-6 overflow-hidden text-center">
         {/* Abstract Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-          <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-purple-200/30 rounded-full blur-3xl opacity-60"></div>
-          <div className="absolute bottom-0 right-[-10%] w-[600px] h-[600px] bg-amber-100/40 rounded-full blur-3xl opacity-60"></div>
+          <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-3xl opacity-60"></div>
+          <div className="absolute bottom-0 right-[-10%] w-[600px] h-[600px] bg-amber-100/40 dark:bg-amber-900/20 rounded-full blur-3xl opacity-60"></div>
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-purple-100 shadow-sm mb-6 animate-fade-in-up">
-            <FaCamera className="text-purple-600" />
-            <span className="text-sm font-semibold text-purple-700">Campus Life</span>
-          </div>
 
-          <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight animate-fade-in-up delay-100">
+
+          <h1 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight animate-fade-in-up delay-100">
             Capturing <span className="bg-gradient-to-r from-purple-600 to-amber-500 bg-clip-text text-transparent">Moments</span>
           </h1>
 
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up delay-200">
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up delay-200">
             Browse our collection of event photos, student achievements, and vibrant campus life.
           </p>
 
@@ -104,8 +101,8 @@ export default function Gallery() {
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border ${selectedCategory === category
-                    ? 'bg-slate-900 text-white border-slate-900 shadow-lg scale-105'
-                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
+                  ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-slate-900 dark:border-white shadow-lg scale-105'
+                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
                   }`}
               >
                 {category}
@@ -122,16 +119,18 @@ export default function Gallery() {
             {filteredImages.map((img, i) => (
               <div
                 key={img.id}
-                className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 bg-white"
+                className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700"
                 onClick={() => setLightbox(img)}
               >
-                <Image
-                  src={img.src}
-                  alt={img.caption}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
+                <div className="absolute inset-0 bg-white dark:bg-slate-200 transition-colors duration-300"> {/* Image background container */}
+                  <Image
+                    src={img.src}
+                    alt={img.caption}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
 
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
@@ -153,10 +152,10 @@ export default function Gallery() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-white/50 backdrop-blur-sm rounded-3xl border border-dashed border-slate-300">
+          <div className="text-center py-20 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-3xl border border-dashed border-slate-300 dark:border-slate-700">
             <div className="text-6xl mb-4 opacity-50">📷</div>
-            <h3 className="text-xl font-bold text-slate-700 mb-2">No images found</h3>
-            <p className="text-slate-500">
+            <h3 className="text-xl font-bold text-slate-700 dark:text-slate-300 mb-2">No images found</h3>
+            <p className="text-slate-500 dark:text-slate-400">
               Try selecting a different category.
             </p>
           </div>
@@ -164,38 +163,40 @@ export default function Gallery() {
       </div>
 
       {/* LIGHTBOX */}
-      {lightbox && (
-        <div
-          className="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 flex items-center justify-center p-4 animate-fade-in"
-          onClick={() => setLightbox(null)}
-        >
-          <button
-            onClick={() => setLightbox(null)}
-            className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors bg-white/10 hover:bg-white/20 p-3 rounded-full"
-          >
-            <FaTimes className="text-2xl" />
-          </button>
-
+      {
+        lightbox && (
           <div
-            className="max-w-5xl w-full max-h-[90vh] flex flex-col items-center justify-center"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image area
+            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 flex items-center justify-center p-4 animate-fade-in"
+            onClick={() => setLightbox(null)}
           >
-            <div className="relative w-full h-auto max-h-[75vh] min-h-[300px] mb-6 rounded-lg overflow-hidden shadow-2xl">
-              <Image
-                src={lightbox.src}
-                alt={lightbox.caption}
-                fill
-                className="object-contain"
-              />
-            </div>
+            <button
+              onClick={() => setLightbox(null)}
+              className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors bg-white/10 hover:bg-white/20 p-3 rounded-full"
+            >
+              <FaTimes className="text-2xl" />
+            </button>
 
-            <div className="text-center max-w-2xl px-4">
-              <h3 className="text-2xl font-bold text-white mb-2">{lightbox.caption}</h3>
-              <p className="text-gray-300 leading-relaxed font-light">{lightbox.description}</p>
+            <div
+              className="max-w-5xl w-full max-h-[90vh] flex flex-col items-center justify-center"
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image area
+            >
+              <div className="relative w-full h-auto max-h-[75vh] min-h-[300px] mb-6 rounded-lg overflow-hidden shadow-2xl">
+                <Image
+                  src={lightbox.src}
+                  alt={lightbox.caption}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+
+              <div className="text-center max-w-2xl px-4">
+                <h3 className="text-2xl font-bold text-white mb-2">{lightbox.caption}</h3>
+                <p className="text-gray-300 leading-relaxed font-light">{lightbox.description}</p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       {/* CTA SECTION */}
       <div className="w-full max-w-4xl mx-auto px-6 mb-24">
@@ -214,6 +215,6 @@ export default function Gallery() {
           </Link>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
