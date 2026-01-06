@@ -162,7 +162,7 @@ export default function Downloads() {
                       </span>
                       <span>Size: {download.fileSize}</span>
                       <span>Uploaded: {download.uploadDate}</span>
-                      <span>Downloads: {download.downloads}</span>
+
                     </div>
 
                     <div className="flex items-center gap-3">

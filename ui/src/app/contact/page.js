@@ -51,7 +51,7 @@ export default function Contact() {
           <div className="flex flex-col gap-4 text-base">
             <div className="flex items-center gap-3"><FaEnvelope className="text-brandPurple" /><span className="font-semibold">Email:</span> <span className="text-brandGold">epsilontrivandrum@gmail.com</span></div>
             <div className="flex items-center gap-3"><FaPhone className="text-brandPurple" /><span className="font-semibold">Phone:</span> <span className="text-brandGold">7736556277</span>, <span className="text-brandGold">9778797330</span></div>
-            <div className="flex items-start gap-3"><FaMapMarkerAlt className="text-brandPurple mt-1" /><span className="font-semibold">Address:</span> <span>Epsilon Centre For Quality Studies<br />opp, Credence Hospital ullor Trivandram</span></div>
+            <div className="flex items-start gap-3"><FaMapMarkerAlt className="text-brandPurple mt-1" /><span className="font-semibold">Address:</span> <span>Epsilon Centre For Quality Studies,<br />opp Credence Hospital, ulloor,<br /> Trivandrum, Kerala 695011</span></div>
           </div>
           <a href="https://api.whatsapp.com/send/?phone=917736556277&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="animated-btn flex items-center justify-center gap-2 mt-6 w-full">
             <FaWhatsapp className="text-2xl" /> Chat on WhatsApp
