@@ -41,13 +41,20 @@ export default function Contact() {
         {/* Contact Info Column */}
         <div className="flex-1 flex flex-col gap-6 px-8 py-12 md:py-16 justify-center bg-white/40 dark:bg-slate-900/40 backdrop-blur-lg">
           <div className="flex flex-col items-center mb-6">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-brandPurple to-brandGold flex items-center justify-center shadow-lg mb-2 overflow-hidden">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-brandPurple to-brandGold flex items-center justify-center shadow-lg mb-2 overflow-hidden relative">
               <Image
                 src="/epsilon/logo.png"
                 alt="Epsilon Centre Logo"
                 width={64}
                 height={64}
-                className="object-cover rounded-full"
+                className="object-cover rounded-full dark:hidden"
+              />
+              <Image
+                src="/epsilon/logowt.png"
+                alt="Epsilon Centre Logo"
+                width={64}
+                height={64}
+                className="object-cover rounded-full hidden dark:block"
               />
             </div>
             <div className="font-bold text-xl gradient-text">Epsilon Centre</div>
