@@ -198,23 +198,7 @@ export default function Gallery() {
         )
       }
 
-      {/* CTA SECTION */}
-      <div className="w-full max-w-4xl mx-auto px-6 mb-24">
-        <div className="bg-gradient-to-br from-purple-900 to-slate-900 rounded-3xl shadow-xl p-10 text-center relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-purple-600/30 transition-all duration-700"></div>
 
-          <h2 className="text-3xl font-bold text-white mb-4 relative z-10">Have photos to share?</h2>
-          <p className="text-purple-200 mb-8 max-w-lg mx-auto relative z-10 leading-relaxed">
-            We love seeing Epsilon through your eyes. Share your moments from classes, events, or workshops with us!
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block px-8 py-3 bg-white text-purple-900 font-bold rounded-xl hover:bg-purple-50 hover:-translate-y-1 transition-all duration-300 shadow-lg relative z-10"
-          >
-            Get in Touch
-          </Link>
-        </div>
-      </div>
     </div >
   );
 }
