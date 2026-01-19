@@ -32,9 +32,8 @@ export async function POST(request) {
     // I'll add the sync logic just in case, reusing the same YouTube API params if they are global, 
     // or we might need separate config. For simplicity, let's assume they might stick to one channel.
     if (data.action === 'sync') {
-        // ... Similar sync logic to api/videos if requested, but let's hold off until specifically asked.
-        // Just manual management for "Course Videos" seems implied by "controlled from courses".
-        return NextResponse.json({ success: false, message: 'Sync not implemented for course-videos yet' });
+        writeData('course-videos', data.videos);
+        return NextResponse.json({ success: true, count: data.videos.length });
     }
 
     return NextResponse.json({ success: false, message: 'Invalid action' });

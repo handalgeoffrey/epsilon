@@ -14,7 +14,7 @@ export default function VideoSlideshow() {
         // Fetch videos from admin API (Port 3000)
         const fetchVideos = async () => {
             try {
-                const res = await fetch('http://localhost:3000/api/course-videos');
+                const res = await fetch('http://localhost:3001/api/course-videos');
                 if (res.ok) {
                     const data = await res.json();
                     if (data && data.length > 0) {

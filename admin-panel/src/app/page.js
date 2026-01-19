@@ -1,16 +1,17 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { 
-  FaImages, 
-  FaYoutube, 
-  FaBullhorn, 
-  FaDownload, 
-  FaCamera, 
+import {
+  FaImages,
+  FaYoutube,
+  FaBullhorn,
+  FaDownload,
+  FaCamera,
   FaGraduationCap,
   FaCog,
   FaChartLine,
-  FaUsers
+  FaUsers,
+  FaVideo
 } from 'react-icons/fa';
 
 export default function AdminDashboard() {
@@ -57,6 +58,13 @@ export default function AdminDashboard() {
       icon: <FaCamera className="text-4xl text-brandGold" />,
       href: '/gallery',
       color: 'from-yellow-500 to-yellow-600'
+    },
+    {
+      title: 'Course Videos',
+      description: 'Manage slideshow videos for the Courses page',
+      icon: <FaVideo className="text-4xl text-pink-500" />,
+      href: '/course-videos',
+      color: 'from-pink-500 to-pink-600'
     },
     {
       title: 'Courses',

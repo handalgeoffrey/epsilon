@@ -1,29 +1,29 @@
 [
     {
-        "id": "user_1",
-        "title": "Mathematics Tutorial - Session 1",
-        "thumbnail": "https://img.youtube.com/vi/tQpl3BqIoCo/maxresdefault.jpg",
-        "videoId": "tQpl3BqIoCo",
-        "publishedAt": "2024-05-20",
-        "duration": "Manual",
-        "views": "N/A"
-    },
-    {
-        "id": "user_2",
-        "title": "Mathematics Tutorial - Session 2",
+        "id": "demo_1",
+        "title": "Mathematics Demo Video 1",
         "thumbnail": "https://img.youtube.com/vi/1QP-kCiewvM/maxresdefault.jpg",
         "videoId": "1QP-kCiewvM",
-        "publishedAt": "2024-05-21",
-        "duration": "Manual",
-        "views": "N/A"
+        "publishedAt": "2024-01-01",
+        "duration": "0:30",
+        "views": "1K"
     },
     {
-        "id": "user_3",
-        "title": "Mathematics Tutorial - Session 3",
-        "thumbnail": "https://img.youtube.com/vi/OY08cK_2Ax0/maxresdefault.jpg",
-        "videoId": "OY08cK_2Ax0",
-        "publishedAt": "2024-05-22",
-        "duration": "Manual",
-        "views": "N/A"
+        "id": "demo_2",
+        "title": "How to Pronounce SZA (Demo)",
+        "thumbnail": "https://img.youtube.com/vi/tQpl3BqIoCo/maxresdefault.jpg",
+        "videoId": "tQpl3BqIoCo",
+        "publishedAt": "2024-02-15",
+        "duration": "0:05",
+        "views": "500"
+    },
+    {
+        "id": "demo_3",
+        "title": "Epsilon Institute Promo",
+        "thumbnail": "https://img.youtube.com/vi/LJOxnSkNsFQ/maxresdefault.jpg",
+        "videoId": "LJOxnSkNsFQ",
+        "publishedAt": "2023-12-10",
+        "duration": "1:20",
+        "views": "2K"
     }
 ]
