@@ -102,29 +102,41 @@ export default function Downloads() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center pt-navbar pb-24 w-full bg-[#f8fafc] dark:bg-slate-900 transition-colors duration-300">
-      <h1 className="text-4xl font-extrabold gradient-text text-center mb-8">Downloads</h1>
+    <div className="min-h-screen flex flex-col items-center pt-navbar pb-24 w-full bg-[#f8fafc] dark:bg-slate-900 transition-colors duration-300 relative overflow-hidden">
 
-      {/* Search and Filter Section */}
-      <div className="w-full max-w-4xl mx-auto px-4 mb-8">
-        <div className="glass rounded-xl shadow-glass p-6 dark:border-white/10 transition-colors duration-300">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      {/* Background Decorations */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-300/30 dark:bg-purple-900/20 rounded-full blur-[100px] animate-blob"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-amber-200/30 dark:bg-amber-900/20 rounded-full blur-[100px] animate-blob animation-delay-2000"></div>
+        <div className="absolute top-[40%] left-[80%] w-[300px] h-[300px] bg-indigo-300/30 dark:bg-indigo-900/20 rounded-full blur-[80px] animate-blob animation-delay-4000"></div>
+      </div>
+
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6">
+        <h1 className="text-4xl md:text-5xl font-extrabold gradient-text text-center mb-4 mt-8">Downloads</h1>
+        <p className="text-center text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto">
+          Access important resources, syllabus, practice tests, and study materials.
+        </p>
+
+        {/* Search and Filter Section */}
+        <div className="glass rounded-2xl shadow-lg p-6 mb-10 border border-white/50 dark:border-white/10 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-amber-500/5 dark:from-purple-500/10 dark:to-amber-500/10 pointer-events-none" />
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="relative">
-              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
                 placeholder="Search downloads..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-brandPurple focus:border-transparent transition-all duration-200"
+                className="w-full pl-11 pr-4 py-3 border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80 backdrop-blur text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all outline-none"
               />
             </div>
             <div className="relative">
-              <FaFilter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <FaFilter className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400" />
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-brandPurple focus:border-transparent transition-all duration-200"
+                className="w-full pl-11 pr-4 py-3 border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80 backdrop-blur text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all outline-none appearance-none cursor-pointer"
               >
                 {categories.map(category => (
                   <option key={category} value={category}>{category}</option>
@@ -132,81 +144,77 @@ export default function Downloads() {
               </select>
             </div>
           </div>
-
-          <div className="text-center text-sm text-gray-600 dark:text-gray-400">
-            {filteredDownloads.length} of {downloads.filter(d => d.active).length} files available
-          </div>
         </div>
-      </div>
 
-      {/* Downloads List */}
-      {filteredDownloads.length > 0 ? (
-        <div className="w-full max-w-4xl mx-auto px-4">
-          <div className="space-y-4">
+        {/* Downloads List */}
+        {filteredDownloads.length > 0 ? (
+          <div className="flex flex-col gap-4">
             {filteredDownloads.map((download) => (
-              <div key={download.id} className="glass rounded-xl shadow-glass p-6 hover:shadow-xl transition-all duration-300 dark:border-white/10">
-                <div className="flex items-start gap-4">
+              <div
+                key={download.id}
+                className="group relative glass rounded-xl p-4 md:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-transparent hover:border-purple-200 dark:hover:border-purple-800/50 bg-white/60 dark:bg-slate-800/60"
+              >
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
+                  {/* Icon */}
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center">
-                      <FaFilePdf className="text-2xl text-red-500" />
+                    <div className="w-12 h-12 md:w-14 md:h-14 bg-red-100 dark:bg-red-900/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <FaFilePdf className="text-2xl text-red-500 dark:text-red-400" />
                     </div>
                   </div>
 
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{download.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-3">{download.description}</p>
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white truncate mb-1 pr-4">{download.title}</h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-1 mb-2 md:mb-0">{download.description}</p>
 
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-3">
-                      <span className="px-3 py-1 bg-brandPurple/10 dark:bg-brandPurple/30 text-brandPurple dark:text-brandPurple/80 rounded-full">
-                        {download.category}
-                      </span>
-                      <span>Size: {download.fileSize}</span>
-                      <span>Uploaded: {download.uploadDate}</span>
+                    {/* Metadata Mobile */}
+                    <div className="flex md:hidden flex-wrap items-center gap-3 text-xs text-slate-500 mt-2">
+                      <span className="bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded-full">{download.fileSize}</span>
+                      <span>•</span>
+                      <span>{download.uploadDate}</span>
+                    </div>
+                  </div>
 
+                  {/* Metadata Desktop & Action */}
+                  <div className="flex flex-row md:flex-col lg:flex-row items-center gap-4 md:gap-6 w-full md:w-auto mt-4 md:mt-0 justify-between md:justify-end">
+                    <div className="hidden md:flex flex-col items-end text-sm text-slate-500 dark:text-slate-400 gap-1">
+                      <span className="font-medium text-slate-700 dark:text-slate-300">{download.category}</span>
+                      <div className="flex items-center gap-2">
+                        <span>{download.fileSize}</span>
+                        <span>•</span>
+                        <span>{download.uploadDate}</span>
+                      </div>
                     </div>
 
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={() => handleDownload(download)}
-                        className="btn-primary flex items-center gap-2"
-                      >
+                    <button
+                      onClick={() => handleDownload(download)}
+                      className="btn-primary whitespace-nowrap px-5 py-2.5 text-sm flex-shrink-0 shadow-md group-hover:shadow-purple-500/20"
+                    >
+                      <div className="flex items-center gap-2">
                         <FaDownload />
-                        Download PDF
-                      </button>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">{download.fileName}</span>
-                    </div>
+                        <span>Download</span>
+                      </div>
+                    </button>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      ) : (
-        <div className="text-center py-12">
-          <FaFilePdf className="text-6xl mx-auto mb-4 text-gray-300" />
-          <h3 className="text-xl font-semibold text-gray-600 mb-2">No files found</h3>
-          <p className="text-gray-500">
-            {searchTerm || selectedCategory !== 'All'
-              ? 'Try adjusting your search or filter criteria'
-              : 'No downloads available at the moment'
-            }
-          </p>
-        </div>
-      )}
+        ) : (
+          <div className="text-center py-20 px-6 glass rounded-2xl border-dashed border-2 border-slate-300 dark:border-slate-700/50">
+            <FaSearch className="text-5xl mx-auto mb-4 text-slate-300 dark:text-slate-600" />
+            <h3 className="text-xl font-bold text-slate-700 dark:text-slate-300 mb-2">No files found</h3>
+            <p className="text-slate-500 dark:text-slate-400">
+              We couldn't find any downloads matching your search.
+            </p>
+          </div>
+        )}
 
-      {/* Contact Section */}
-      <div className="w-full max-w-4xl mx-auto px-4 mt-12">
-        <div className="glass rounded-xl shadow-glass p-8 text-center dark:border-white/10">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Need More Materials?</h2>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
-            Can't find what you're looking for? Contact us for additional study materials,
-            custom practice tests, or specific topic notes.
-          </p>
-          <Link
-            href="/contact"
-            className="animated-btn inline-flex items-center gap-2"
-          >
-            Contact Us
+        {/* Contact CTA */}
+        <div className="mt-16 text-center">
+          <p className="text-slate-600 dark:text-slate-400 mb-4 font-medium">Looking for something else?</p>
+          <Link href="/contact" className="text-purple-600 dark:text-purple-400 font-bold hover:underline">
+            Contact us for custom materials &rarr;
           </Link>
         </div>
       </div>

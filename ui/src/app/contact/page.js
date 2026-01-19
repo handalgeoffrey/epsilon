@@ -23,10 +23,17 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center pt-navbar w-full bg-[#f8fafc] dark:bg-slate-900 transition-colors duration-300">
+    <div className="min-h-screen flex flex-col items-center pt-navbar w-full bg-[#f8fafc] dark:bg-slate-900 transition-colors duration-300 relative overflow-hidden">
+
+      {/* Background Decorations */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[50%] -translate-x-1/2 w-[800px] h-[500px] bg-purple-500/20 dark:bg-purple-900/20 rounded-full blur-[100px] animate-pulse"></div>
+        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-[100px] animate-blob"></div>
+        <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-amber-200/30 dark:bg-amber-900/20 rounded-full blur-[100px] animate-blob animation-delay-4000"></div>
+      </div>
+
       {/* Hero Banner */}
-      <div className="w-full flex flex-col items-center justify-center py-12 mb-8 relative overflow-hidden">
-        <svg className="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[300px] opacity-20 blur-2xl" viewBox="0 0 700 300"><ellipse cx="350" cy="150" rx="340" ry="120" fill="url(#grad)" /><defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#8443dc" /><stop offset="100%" stopColor="#dfa720" /></linearGradient></defs></svg>
+      <div className="w-full flex flex-col items-center justify-center py-12 mb-8 relative z-10">
         <h1 className="text-4xl sm:text-5xl font-extrabold gradient-text text-center z-10">Contact Us</h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 text-center mt-4 z-10">Get in touch for any queries about our courses or admissions. We’re here to help you succeed!</p>
       </div>
