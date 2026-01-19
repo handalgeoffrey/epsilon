@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FaDownload, FaFilePdf, FaSearch, FaFilter } from 'react-icons/fa';
 
+import PageBackground from '@/components/PageBackground';
+
 export default function Downloads() {
   const [downloads, setDownloads] = useState([]);
   const [filteredDownloads, setFilteredDownloads] = useState([]);
@@ -93,7 +95,8 @@ export default function Downloads() {
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center py-24 w-full">
-        <div className="text-center">
+        <PageBackground />
+        <div className="text-center relative z-10">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brandPurple mx-auto mb-4"></div>
           <p className="text-gray-600">Loading downloads...</p>
         </div>
@@ -104,12 +107,7 @@ export default function Downloads() {
   return (
     <div className="min-h-screen flex flex-col items-center pt-navbar pb-24 w-full bg-[#f8fafc] dark:bg-slate-900 transition-colors duration-300 relative overflow-hidden">
 
-      {/* Background Decorations */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-300/30 dark:bg-purple-900/20 rounded-full blur-[100px] animate-blob"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-amber-200/30 dark:bg-amber-900/20 rounded-full blur-[100px] animate-blob animation-delay-2000"></div>
-        <div className="absolute top-[40%] left-[80%] w-[300px] h-[300px] bg-indigo-300/30 dark:bg-indigo-900/20 rounded-full blur-[80px] animate-blob animation-delay-4000"></div>
-      </div>
+      <PageBackground />
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6">
         <h1 className="text-4xl md:text-5xl font-extrabold gradient-text text-center mb-4 mt-8">Downloads</h1>

@@ -1,15 +1,13 @@
 'use client';
 import { LuTarget, LuEye, LuUser, LuAward, LuBookOpen, LuPuzzle, LuClipboardCheck } from 'react-icons/lu';
 
+import PageBackground from '@/components/PageBackground';
+
 export default function About() {
   return (
     <div className="min-h-screen flex flex-col items-center pt-navbar pb-16 w-full bg-[#f8fafc] dark:bg-slate-900 transition-colors duration-300 relative overflow-hidden">
 
-      {/* Background Decorations */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-purple-200/40 dark:bg-purple-900/20 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-normal animate-blob"></div>
-        <div className="absolute bottom-[20%] left-[-10%] w-[500px] h-[500px] bg-amber-100/40 dark:bg-amber-900/20 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-normal animate-blob animation-delay-4000"></div>
-      </div>
+      <PageBackground />
 
       {/* Hero Section */}
       <div className="w-full max-w-4xl mx-auto px-6 text-center mb-16 relative z-10">

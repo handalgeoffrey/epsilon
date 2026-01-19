@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { FaUser, FaSchool, FaUserFriends, FaWhatsapp, FaEnvelope, FaChevronDown, FaBookOpen, FaGraduationCap } from 'react-icons/fa';
 
+import PageBackground from '@/components/PageBackground';
+
 const classes = ['Class 8', 'Class 9', 'Class 10', 'Class 11', 'Class 12', 'Keam Repeater', 'Jee Repeater'];
 const syllabi = ['ICSE', 'ISC', 'CBSE', 'HSE', 'Other'];
 
@@ -61,12 +63,7 @@ export default function Admission() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center pt-navbar pb-12 w-full bg-[#f8fafc] dark:bg-slate-900 transition-colors duration-300 relative overflow-hidden">
 
-      {/* Background Decorations */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[10%] left-[-5%] w-[600px] h-[600px] bg-purple-200/40 dark:bg-purple-900/20 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-normal animate-blob"></div>
-        <div className="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-amber-100/40 dark:bg-amber-900/20 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-normal animate-blob animation-delay-4000"></div>
-        <div className="absolute top-[40%] right-[20%] w-[400px] h-[400px] bg-indigo-200/30 dark:bg-indigo-900/20 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-normal animate-blob animation-delay-2000"></div>
-      </div>
+      <PageBackground />
 
       <div className="relative z-10 w-full max-w-4xl mx-auto px-6 pt-12 pb-8 text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold gradient-text mb-4">Apply for Admission</h1>

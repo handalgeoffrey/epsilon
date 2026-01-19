@@ -3,6 +3,8 @@ import { FaWhatsapp, FaFacebook, FaInstagram, FaUser, FaEnvelope, FaPhone, FaCom
 import { useState } from 'react';
 import Image from 'next/image';
 
+import PageBackground from '@/components/PageBackground';
+
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
@@ -25,12 +27,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen flex flex-col items-center pt-navbar w-full bg-[#f8fafc] dark:bg-slate-900 transition-colors duration-300 relative overflow-hidden">
 
-      {/* Background Decorations */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[50%] -translate-x-1/2 w-[800px] h-[500px] bg-purple-500/20 dark:bg-purple-900/20 rounded-full blur-[100px] animate-pulse"></div>
-        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-[100px] animate-blob"></div>
-        <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-amber-200/30 dark:bg-amber-900/20 rounded-full blur-[100px] animate-blob animation-delay-4000"></div>
-      </div>
+      <PageBackground />
 
       {/* Hero Banner */}
       <div className="w-full flex flex-col items-center justify-center py-12 mb-8 relative z-10">
