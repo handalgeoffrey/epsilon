@@ -21,6 +21,8 @@ import {
 import { FaWhatsapp, FaStar } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
+import PageBackground from "@/components/PageBackground";
+
 export default function Home() {
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const [latestVideo, setLatestVideo] = useState(null);
@@ -105,7 +107,8 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full flex flex-col font-sans">
+    <div className="w-full flex flex-col font-sans relative">
+      <PageBackground />
 
       {/* HERO SECTION */}
       <section className="relative w-full min-h-screen flex items-center overflow-hidden">
@@ -158,7 +161,7 @@ export default function Home() {
       </section>
 
       {/* ANNOUNCEMENT BAR */}
-      <div className="w-full bg-white dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800 py-4 overflow-hidden relative z-20 shadow-sm hidden sm:block transition-colors duration-300">
+      <div className="w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-y border-slate-200 dark:border-slate-800 py-4 overflow-hidden relative z-20 shadow-sm hidden sm:block transition-colors duration-300">
         <div className="ticker-wrap">
           <div className="ticker">
             {[...announcements, ...announcements, ...announcements].map((item, i) => (
@@ -172,7 +175,7 @@ export default function Home() {
       </div>
 
       {/* STATS SECTION (Hidden on mobile) */}
-      <ScrollAnimation className="w-full py-16 bg-white dark:bg-slate-950 relative z-10 hidden md:block transition-colors duration-300">
+      <ScrollAnimation className="w-full py-16 bg-white/40 dark:bg-slate-950/40 backdrop-blur-md relative z-10 hidden md:block transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <StatCard icon={<LuUsers />} number="1000+" label="Students Taught" />
@@ -184,7 +187,7 @@ export default function Home() {
       </ScrollAnimation>
 
       {/* WHY CHOOSE EPSILON */}
-      <ScrollAnimation className="py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden transition-colors duration-300">
+      <ScrollAnimation className="py-24 bg-transparent relative overflow-hidden transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 relative z-10">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
@@ -246,7 +249,7 @@ export default function Home() {
 
       {/* ADMISSION CTA */}
       <ScrollAnimation className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-slate-900"></div>
+        <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-md"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/50 to-amber-900/50"></div>
         <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -267,7 +270,7 @@ export default function Home() {
       </ScrollAnimation>
 
       {/* LATEST VIDEOS */}
-      <ScrollAnimation className="py-24 bg-white dark:bg-slate-950 transition-colors duration-300">
+      <ScrollAnimation className="py-24 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
           <div className="flex items-center justify-between mb-12">
             <div>
@@ -294,7 +297,7 @@ export default function Home() {
       </ScrollAnimation>
 
       {/* SUCCESS RATE & REVIEWS (Google Integration Style) */}
-      <ScrollAnimation className="py-20 bg-[#f8fafc] dark:bg-slate-900 relative overflow-hidden transition-colors duration-300">
+      <ScrollAnimation className="py-20 bg-slate-50/50 dark:bg-slate-900/50 backdrop-blur-md relative overflow-hidden transition-colors duration-300">
         <div className="w-full">
           {/* Header */}
           <div className="text-center mb-12 px-6">
