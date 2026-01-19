@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { FaHome, FaExclamationTriangle } from 'react-icons/fa';
+import PageBackground from '@/components/PageBackground';
 
 export default function NotFound() {
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+        <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-slate-50 dark:bg-slate-900 transition-colors duration-300 relative overflow-hidden">
+            <PageBackground />
             <div className="text-center space-y-6 max-w-md mx-auto p-8 rounded-3xl bg-white dark:bg-slate-800 shadow-xl border border-slate-100 dark:border-slate-700 animate-fade-in-up">
                 <div className="w-24 h-24 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
                     <FaExclamationTriangle className="text-4xl text-red-500" />

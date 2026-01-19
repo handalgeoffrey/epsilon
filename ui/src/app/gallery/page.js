@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { FaSearchPlus, FaTimes, FaCamera } from 'react-icons/fa';
 import Link from 'next/link';
 
+import PageBackground from '@/components/PageBackground';
+
 export default function Gallery() {
   const [images, setImages] = useState([]);
   const [filteredImages, setFilteredImages] = useState([]);
@@ -63,8 +65,9 @@ export default function Gallery() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center py-24 w-full bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
-        <div className="text-center">
+      <div className="min-h-screen flex flex-col items-center justify-center py-24 w-full bg-slate-50 dark:bg-slate-900 transition-colors duration-300 relative overflow-hidden">
+        <PageBackground />
+        <div className="text-center relative z-10">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
           <p className="text-slate-600 font-medium">Loading gallery...</p>
         </div>
@@ -73,15 +76,13 @@ export default function Gallery() {
   }
 
   return (
-    <div className="w-full flex flex-col items-center justify-start min-h-screen bg-slate-50 dark:bg-slate-900 font-sans transition-colors duration-300">
+    <div className="w-full flex flex-col items-center justify-start min-h-screen bg-slate-50 dark:bg-slate-900 font-sans transition-colors duration-300 relative overflow-hidden">
+
+      <PageBackground />
 
       {/* HERO SECTION */}
-      <section className="relative w-full pt-32 pb-16 px-6 overflow-hidden text-center">
+      <section className="relative w-full pt-32 pb-16 px-6 overflow-hidden text-center z-10">
         {/* Abstract Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-          <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-3xl opacity-60"></div>
-          <div className="absolute bottom-0 right-[-10%] w-[600px] h-[600px] bg-amber-100/40 dark:bg-amber-900/20 rounded-full blur-3xl opacity-60"></div>
-        </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
 
