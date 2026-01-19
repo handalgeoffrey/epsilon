@@ -13,9 +13,9 @@ export default function PageBackground() {
             />
 
             {/* 2. Vibrant Animated Blobs */}
-            <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-purple-400/30 dark:bg-purple-900/20 rounded-full blur-[100px] animate-blob mix-blend-multiply dark:mix-blend-normal" />
-            <div className="absolute top-[20%] right-[-10%] w-[35vw] h-[35vw] bg-amber-300/30 dark:bg-amber-900/20 rounded-full blur-[100px] animate-blob animation-delay-2000 mix-blend-multiply dark:mix-blend-normal" />
-            <div className="absolute bottom-[-10%] left-[20%] w-[40vw] h-[40vw] bg-blue-400/30 dark:bg-blue-900/20 rounded-full blur-[100px] animate-blob animation-delay-4000 mix-blend-multiply dark:mix-blend-normal" />
+            <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-purple-400/30 dark:bg-purple-600/30 rounded-full blur-[100px] animate-blob mix-blend-multiply dark:mix-blend-screen" />
+            <div className="absolute top-[20%] right-[-10%] w-[35vw] h-[35vw] bg-amber-300/30 dark:bg-amber-600/25 rounded-full blur-[100px] animate-blob animation-delay-2000 mix-blend-multiply dark:mix-blend-screen" />
+            <div className="absolute bottom-[-10%] left-[20%] w-[40vw] h-[40vw] bg-blue-400/30 dark:bg-blue-600/30 rounded-full blur-[100px] animate-blob animation-delay-4000 mix-blend-multiply dark:mix-blend-screen" />
 
             {/* 3. Floating Math Elements (Graphic Design Elements) */}
             <div className="absolute top-[15%] left-[5%] text-9xl font-serif text-slate-900/5 dark:text-white/5 rotate-12 select-none">
